@@ -23,6 +23,7 @@
     <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>assets/css/maps/jquery-jvectormap-2.0.1.css" />
     <link href="<?php echo base_url();?>assets/css/icheck/flat/green.css" rel="stylesheet" />
     <link href="<?php echo base_url();?>assets/css/floatexamples.css" rel="stylesheet" type="text/css" />
+    <link href="<?php echo base_url();?>assets/css/datatables/tools/css/dataTables.tableTools.css" rel="stylesheet" />
 
 
     <script src="<?php echo base_url();?>assets/js/jquery.min.js"></script>
@@ -77,12 +78,12 @@
                         <ul class="nav navbar-nav navbar-right">
                             <li class="">
                                 <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                                    <img src="<?php echo base_url();?>assets/images/img.jpg" alt="">John Doe
+                                    <img src="<?php echo base_url();?>assets/images/uploads/<?php echo $this->session->userdata('gambar'); ?>" alt=""><?php echo $this->session->userdata('nama_lengkap'); ?>
                                     <span class=" fa fa-angle-down"></span>
                                 </a>
                                 <ul class="dropdown-menu dropdown-usermenu animated fadeInDown pull-right">
                                     <li><a href="javascript:;">  Profile</a></li>
-                                    <li><a href="login.html"><i class="fa fa-sign-out pull-right"></i> Log Out</a>
+                                    <li><a href="<?php echo base_url();?>login/logout"><i class="fa fa-sign-out pull-right"></i> Log Out</a>
                                     </li>
                                 </ul>
                             </li>
@@ -99,11 +100,7 @@
 
             <!-- page content -->
             <div class="right_col" role="main">
-                  <div class="row">
-                        <div class="col-md-12 col-sm-12 col-xs-12">
-
-                        </div>
-                  </div>
+                  <?php $this->load->view($konten);?>
 
 
                 <!-- footer content -->
@@ -156,6 +153,72 @@
     <script type="text/javascript" src="<?php echo base_url();?>assets/js/flot/curvedLines.js"></script>
     <script type="text/javascript" src="<?php echo base_url();?>assets/js/flot/jquery.flot.resize.js"></script>
 
+    <!-- Datatables -->
+    <script src="<?php echo base_url();?>assets/js/datatables/js/jquery.dataTables.js"></script>
+    <script src="<?php echo base_url();?>assets/js/datatables/tools/js/dataTables.tableTools.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('input.tableflat').iCheck({
+                checkboxClass: 'icheckbox_flat-green',
+                radioClass: 'iradio_flat-green'
+            });
+        });
+
+        var asInitVals = new Array();
+        $(document).ready(function () {
+            var oTable = $('#example').dataTable({
+                "oLanguage": {
+                    "sSearch": "Search all columns:"
+                },
+                "aoColumnDefs": [
+                    {
+                        'bSortable': false,
+                        'aTargets': [0]
+                    } //disables sorting for column one
+        ],
+                'iDisplayLength': 12,
+                "sPaginationType": "full_numbers",
+                "dom": 'T<"clear">lfrtip',
+                "tableTools": {
+                    "sSwfPath": "<?php echo base_url('assets2/js/Datatables/tools/swf/copy_csv_xls_pdf.swf'); ?>"
+                }
+            });
+            $("tfoot input").keyup(function () {
+                /* Filter on the column based on the index of this element's parent <th> */
+                oTable.fnFilter(this.value, $("tfoot th").index($(this).parent()));
+            });
+            $("tfoot input").each(function (i) {
+                asInitVals[i] = this.value;
+            });
+            $("tfoot input").focus(function () {
+                if (this.className == "search_init") {
+                    this.className = "";
+                    this.value = "";
+                }
+            });
+            $("tfoot input").blur(function (i) {
+                if (this.value == "") {
+                    this.className = "search_init";
+                    this.value = asInitVals[$("tfoot input").index(this)];
+                }
+            });
+        });
+
+
+        function hapus() {
+
+          var conf=confirm("Apakah data ini ingin dihapus ?");
+
+            if (conf==true) {
+              return true;
+            } else {
+              return false;
+            }
+
+        }
+    </script>
+
 </body>
 
 </html>
+<?php echo $this->session->flashdata("alert");?>

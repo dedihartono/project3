@@ -1,18 +1,18 @@
 <!-- menu prile quick info -->
 <div class="profile">
     <div class="profile_pic">
-        <img src="<?php echo base_url();?>assets/images/img.jpg" alt="..." class="img-circle profile_img">
+        <img src="<?php echo base_url();?>assets/images/uploads/<?php echo $this->session->userdata('gambar'); ?>" alt="..." class="img-circle profile_img">
     </div>
     <div class="profile_info">
-        <span>Welcome,</span>
-        <h2>Anthony Fernando</h2>
+        <span>Selamat Datang !,</span>
+        <h2><?php echo $this->session->userdata('nama_lengkap'); ?></h2>
     </div>
 </div>
 <!-- /menu prile quick info -->
 <br />
 <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
     <div class="menu_section">
-        <h3>General</h3>
+        <h3><?php echo $this->session->userdata('jabatan'); ?></h3>
         <br>
 
         <ul class="nav side-menu">
