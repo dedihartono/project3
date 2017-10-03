@@ -22,6 +22,9 @@
                     </li>
                 </ul>
             </li>
+            <li>
+              <a href="<?php echo base_url();?>kelola_jadwal/tampil_mk"><i class="fa fa-home"></i> Kelola Matakuliah</a>
+            </li>
         </ul>
     </div>
 
