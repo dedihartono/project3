@@ -25,6 +25,9 @@
             <li>
               <a href="<?php echo base_url();?>kelola_jadwal/tampil_mk"><i class="fa fa-home"></i> Kelola Matakuliah</a>
             </li>
+            <li>
+              <a href="<?php echo base_url();?>kelola_dosen/tampil_dosen"><i class="fa fa-users"></i> Kelola Dosen</a>
+            </li>
         </ul>
     </div>
 
