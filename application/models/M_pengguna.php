@@ -32,7 +32,6 @@ class M_pengguna extends CI_Model {
 
 				$data['id_pengguna'] 	= $sess->id_pengguna;
 				$data['username'] 		= $sess->username;
-				$data['nama_lengkap'] = $sess->nama_lengkap;
 				$data['hak_akses'] 		= $sess->hak_akses;
 				$data['gambar']				= $sess->gambar;
 
@@ -41,7 +40,7 @@ class M_pengguna extends CI_Model {
 			}
 
 			//menyimpan data jabatan
-			$jabatan = [ 1 => "Admin",];
+			$jabatan = [ 1 => "Admin", "Dosen", "Mahasiswa"];
 
 			//get session hak_akses
 			$data 	= $this->session->userdata('hak_akses');
@@ -51,17 +50,22 @@ class M_pengguna extends CI_Model {
 					$this->session->set_userdata($data);
 
 					$alert	= "<script>alert('Login Sebagai $jabatan[1]')</script>";
-					$this->session->set_flashdata("pesan", $alert);
+					$this->session->set_flashdata("alert", $alert);
 					redirect('dashboard');
 
 			}
 			if ($data == "2") {
-
-				$data = ['jabatan' => $jabatan[2], 'logged_in' => TRUE];
+				$dosen = $this->get_data_dosen();
+				$data = [
+					'jabatan' => $jabatan[2],
+					'logged_in' => TRUE,
+					'id_dosen' 	=> $dosen->id_dosen,
+					'nama_dosen' => $dosen->nama_dosen,
+				];
 				$this->session->set_userdata($data);
 
 				$alert	= "<script>alert('Login Sebagai $jabatan[2]')</script>";
-				$this->session->set_flashdata("pesan", $alert);
+				$this->session->set_flashdata("alert", $alert);
 				redirect('dashboard');
 
 			}
@@ -70,29 +74,13 @@ class M_pengguna extends CI_Model {
 				$this->session->set_userdata($data);
 
 				$alert	= "<script>alert('Login Sebagai $jabatan[3]')</script>";
-				$this->session->set_flashdata("pesan", $alert);
-				redirect('dashboard');
-			}
-			if ($data == "4") {
-				$data = ['jabatan' => $jabatan[4], 'logged_in' => TRUE];
-				$this->session->set_userdata($data);
-
-				$alert	= "<script>alert('Login Sebagai $jabatan[4]')</script>";
-				$this->session->set_flashdata("pesan", $alert);
-				redirect('dashboard');
-			}
-			if ($data == "5") {
-				$data = ['jabatan' => $jabatan[5], 'logged_in' => TRUE];
-				$this->session->set_userdata($data);
-
-				$alert	= "<script>alert('Login Sebagai $jabatan[5]')</script>";
-				$this->session->set_flashdata("pesan", $alert);
+				$this->session->set_flashdata("alert", $alert);
 				redirect('dashboard');
 			}
 
 		} else {
 			$alert	= "<script>alert('Maaf! Username dan Password anda Salah')</script>";
-			$this->session->set_flashdata("pesan", $alert);
+			$this->session->set_flashdata("alert", $alert);
 			redirect('login');
 		}
 
@@ -103,41 +91,42 @@ class M_pengguna extends CI_Model {
 
 		if ($data == FALSE) {
 			$alert	= "<script>alert('Anda belum melakukan login')</script>";
-			$this->session->set_flashdata("pesan", $alert);
+			$this->session->set_flashdata("alert", $alert);
 			redirect('login');
 		}
 
 	}
 
-	//kelola pengguna
-	public function lihat_data_pengguna() {
-		$query = $this->db->get('tb_pengguna');
-		return $query->result();
+	public function get_data_dosen()
+	{
+		$id = $this->session->userdata('id_pengguna');
+		$this->db->select('*');
+		$this->db->from('tb_dosen AS do');
+		$this->db->join('tb_pengguna AS pn', 'do.`id_pengguna` = pn.`id_pengguna`', 'LEFT');
+		$this->db->where('do.`id_pengguna` = "'.$id.'"'   );
+		$query = $this->db->get();
+			return $query->row();
 	}
 
+	//kelola pengguna
 	public function tambah_data_pengguna($data)
 	{
 		$this->db->insert('tb_pengguna', $data);
+
+			return $this->db->insert_id(); //return lastid
 	}
 
-	public function lihat_data_by($id)
+	//Kelola Pengguna (Dosen)
+	public function tambah_data_dosen($data)
 	{
-		$this->db->where('id_pengguna', $id);
-		$query = $this->db->get('tb_pengguna');
-
-		return $query->row();
+		$this->db->insert('tb_dosen', $data);
 	}
 
-	public function edit_data_pengguna($data, $id)
+	//Kelola Pengguna (Mahasiswa)
+	public function tambah_data_mahasiswa($data)
 	{
-		$this->db->where('id_pengguna', $id);
-		$this->db->update('tb_pengguna', $data);
+		$this->db->insert('tb_mahasiswa', $data);
 	}
 
-	public function hapus_data_pengguna($id)
-	{
-		$this->db->where('id_pengguna', $id);
-		$this->db->delete('tb_pengguna');
-	}
 
 }

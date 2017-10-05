@@ -7,9 +7,9 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="icon" href="<?php echo base_url(); ?>assets/images/favicon.ico">
+    <link rel="icon" href="<?php echo base_url(); ?>assets/images/uploads/ilkom.png">
 
-    <title>Gentallela Alela! | </title>
+    <title>Sistem Informasi Pembelajaran </title>
 
     <!-- Bootstrap core CSS -->
 
@@ -52,11 +52,9 @@
                 <div class="left_col scroll-view">
 
                     <div class="navbar nav_title" style="border: 0;">
-                        <a href="index.html" class="site_title"><i class="fa fa-paw"></i> <span>Gentellela Alela!</span></a>
+                        <a href="#" class="site_title"><img width="50px" src="<?php echo base_url(); ?>assets/images/uploads/ilkom.png" alt=""></i> <span>FASILKOM</span></a>
                     </div>
                     <div class="clearfix"></div>
-
-
 
 
                     <!-- sidebar menu -->
@@ -78,7 +76,8 @@
                         <ul class="nav navbar-nav navbar-right">
                             <li class="">
                                 <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                                    <img src="<?php echo base_url();?>assets/images/uploads/<?php echo $this->session->userdata('gambar'); ?>" alt=""><?php echo $this->session->userdata('nama_lengkap'); ?>
+                                    <img src="<?php echo base_url();?>assets/images/uploads/<?php echo $this->session->userdata('gambar'); ?>" alt="">
+                                      <?php echo $this->session->userdata('nama_dosen', 'nama_mahasiswa'); ?>
                                     <span class=" fa fa-angle-down"></span>
                                 </a>
                                 <ul class="dropdown-menu dropdown-usermenu animated fadeInDown pull-right">

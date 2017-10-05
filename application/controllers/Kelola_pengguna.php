@@ -14,82 +14,73 @@ class Kelola_pengguna extends CI_Controller {
 
 	}
 
-
-	public function tampil_pengguna() {
-		$data = array(
-			'breadcrumb_1' 	=> 'Kelola Pengguna',
-			'breadcrumb_2' 	=> anchor('kelola_lokasi_unit/lokasi_unit', 'Pengguna'),
-			'panel_title' 	=> 'Tampil Data Pengguna',
-		);
-		$data['pengguna'] = $this->m_pengguna->lihat_data_pengguna();
-		$data['konten'] = 'pengguna/v_pengguna';
-		$this->load->view('template_admin', $data);
-
+	public function tambah_dosen()
+	{
+		$data['panel_title'] = 'Tambah Dosen';
+    $data['konten'] = 'pengguna/v_tambah_dosen';
+    $this->load->view('template_admin', $data);
 	}
 
-	public function tambah_pengguna()
+	public function tambah_dosen_proses()
 	{
-		$data = array(
-			'breadcrumb_1' 	=> 'Kelola Pengguna',
-			'breadcrumb_2' 	=> anchor('kelola_pengguna/tampil_pengguna', 'Tampil Pengguna'),
-			'breadcrumb_3' 	=> anchor('kelola_pengguna/tambah_pengguna', 'Tambah Pengguna'),
-			'panel_title' 	=> 'Tambah Data Pengguna',
-		);
-		$data['konten'] = 'pengguna/v_tambah_pengguna';
-		$this->load->view('template_admin', $data);
-	}
-
-	public function tambah_pengguna_proses()
-	{
-		$data = array(
-			"nama_lengkap"	=> $this->input->post('nama_lengkap'),
+		$data_1 = array(
 			"username" 			=> $this->input->post('username'),
-			"password" 			=> md5($this->input->post('username')),
-			"hak_akses" 		=> $this->input->post('hak_akses'),
+			"password" 			=> md5($this->input->post('password')),
+			"hak_akses" 		=> 2 ,
+			"gambar" 				=> "dosen.png" ,
 		);
-		$this->m_pengguna->tambah_data_pengguna($data);
+
+		$id_pengguna = $this->m_pengguna->tambah_data_pengguna($data_1);
+
+		$data_2 = array(
+			"nama_dosen" 		=> $this->input->post('nama_dosen'),
+			"kontak" 				=> $this->input->post('kontak'),
+			"alamat" 				=> $this->input->post('alamat'),
+			"id_pengguna"		=> $id_pengguna,
+		);
+
+		$this->m_pengguna->tambah_data_dosen($data_2);
 		$alert	= "<script>alert('Data berhasil disimpan')</script>";
-		$this->session->set_flashdata("pesan", $alert);
-		redirect('kelola_pengguna/tampil_pengguna');
+		$this->session->set_flashdata("alert", $alert);
+		redirect('kelola_pengguna/tambah_dosen');
+
 	}
 
-	public function edit_pengguna($id)
+	public function tambah_mahasiswa()
 	{
-		$data = array(
-			'breadcrumb_1' 	=> 'Kelola Pengguna',
-			'breadcrumb_2' 	=> anchor('kelola_pengguna/tampil_pengguna', 'Pengguna'),
-			'breadcrumb_3' 	=> anchor('kelola_pengguna/edit_pengguna/'.$id, 'Edit Pengguna'),
-			'panel_title' 	=> 'Tambah Data Pengguna',
-		);
-		$id = $this->uri->segment(3);
-		$data['pengguna'] 	= $this->m_pengguna->lihat_data_by($id);
-		$data['konten'] 	= 'pengguna/v_edit_pengguna';
+		$data['panel_title'] = 'Tambah Mahasiswa';
+		$data['konten'] = 'pengguna/v_tambah_mahasiswa';
 		$this->load->view('template_admin', $data);
 	}
 
-	public function edit_pengguna_proses($id)
+	public function tambah_mahasiswa_proses()
 	{
-		$id = $this->uri->segment(3);
-		$data = array(
-			"nama_lengkap"	=> $this->input->post('nama_lengkap'),
-			"username" 			=> $this->input->post('username'),
-			"password" 			=> md5($this->input->post('username')),
-			"hak_akses" 		=> $this->input->post('hak_akses'),
+		$npm = $this->input->post('npm');
+		$data_1 = array(
+			"username" 			=> str_replace(".", "", $npm),
+			"password" 			=> md5(str_replace(".", "", $npm)),
+			"hak_akses" 		=> 3 ,
+			"gambar" 				=> "mahasiswa.png" ,
 		);
 
-		$this->m_pengguna->edit_data_pengguna($data, $id);
-		$alert	= "<script>alert('Data berhasil diubah')</script>";
-		$this->session->set_flashdata("pesan", $alert);
-		redirect('kelola_pengguna/tampil_pengguna');
+		$id_pengguna = $this->m_pengguna->tambah_data_pengguna($data_1);
+
+		$data_2 = array(
+			"npm" 					=> $this->input->post('npm'),
+			"nama_mahasiswa"=> $this->input->post('nama_mahasiswa'),
+			"id_pengguna"		=> $id_pengguna,
+		);
+
+		$this->m_pengguna->tambah_data_mahasiswa($data_2);
+		$alert	= "<script>alert('Data berhasil disimpan')</script>";
+		$this->session->set_flashdata("alert", $alert);
+		redirect('kelola_pengguna/tambah_mahasiswa');
 	}
 
-	public function hapus_pengguna($id)
+	public function test()
 	{
-		$id = $this->uri->segment(3);
-		$this->m_pengguna->hapus_data_pengguna($id);
-		$alert	= "<script>alert('Data berhasil dihapus')</script>";
-		$this->session->set_flashdata("pesan", $alert);
-		redirect('kelola_pengguna/tampil_pengguna');
+		$data = $this->m_pengguna->get_data_dosen();
+		var_dump($data);
 	}
 
 }

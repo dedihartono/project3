@@ -71,7 +71,7 @@
             </div>
         </div>
     </div>
-
+<?php echo $this->session->flashdata("alert");?>
 </body>
 
 </html>
