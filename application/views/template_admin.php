@@ -217,7 +217,6 @@
         }
     </script>
 
+    <?php echo $this->session->flashdata("alert");?>
 </body>
-
 </html>
-<?php echo $this->session->flashdata("alert");?>

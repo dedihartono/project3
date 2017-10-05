@@ -9,7 +9,7 @@ class Kelola_pengguna extends CI_Controller {
 
 		//load model and add alias
 		//check session logged_in
-			$this->load->model('m_pengguna');
+			$this->load->model(array('m_pengguna'));
 			$this->m_pengguna->check_session();
 
 	}

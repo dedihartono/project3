@@ -15,4 +15,18 @@ class M_materi extends CI_Model {
     $this->db->insert('tb_materi_kuliah', $data);
   }
 
+  public function tampil_data_materi()
+  {
+    $id = $this->session->userdata('id_dosen');
+    $this->db->select('*');
+    $this->db->from('tb_materi_kuliah AS mk');
+    $this->db->join('tb_matakuliah AS mat', 'mk.`id_matakuliah` = mat.`id_matakuliah`', 'LEFT' );
+    $this->db->join('tb_pertemuan AS prt', 'mk.`id_pertemuan` = prt.`id_pertemuan`', 'LEFT' );
+    $this->db->join('tb_semester AS smt', 'mk.`id_semester` = smt.`id_semester`', 'LEFT' );
+    $this->db->join('tb_dosen AS do', 'mk.`id_dosen` = do.`id_dosen`', 'LEFT');
+    $this->db->where('do.`id_dosen` = "'.$id.'"');
+    $query = $this->db->get();
+        return $query->result();
+  }
+
 }

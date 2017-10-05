@@ -15,9 +15,23 @@
               <br/>
               <?php echo form_open_multipart('Kelola_materi/tambah_materi_proses', array('class'=>'form-horizontal form-label-left'));?>
               <div class="form-group">
+                  <label class="control-label col-md-3 col-sm-3 col-xs-12">Pertemuan</label>
+                  <div class="col-md-3 col-sm-3 col-xs-8">
+                      <select class="form-control" name="id_pertemuan">
+                        <?php foreach ($pertemuan as $row): ?>
+                          <option value="<?php echo $row->id_pertemuan;?>"><?php echo $row->pertemuan;?></option>
+                        <?php endforeach; ?>
+                      </select>
+                  </div>
+              </div>
+              <div class="form-group">
                   <label class="control-label col-md-3 col-sm-3 col-xs-12">Matakuliah</label>
-                  <div class="col-md-9 col-sm-9 col-xs-12">
-                      <input class="form-control" name="id_matakuliah" placeholder="" type="text">
+                  <div class="col-md-4 col-sm-4 col-xs-8">
+                      <select class="form-control" name="id_matakuliah">
+                        <?php foreach ($matkul as $row): ?>
+                          <option value="<?php echo $row->id_matakuliah;?>"><?php echo $row->matakuliah;?></option>
+                        <?php endforeach; ?>
+                      </select>
                   </div>
               </div>
               <div class="form-group">

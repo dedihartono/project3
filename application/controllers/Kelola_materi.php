@@ -8,13 +8,15 @@ class Kelola_materi extends CI_Controller{
     parent::__construct();
     //load model and add alias
 		//check session logged_in
-			$this->load->model(array('m_pengguna', 'm_materi'));
+			$this->load->model(array('m_pengguna', 'm_materi', 'm_jadwal'));
 			$this->m_pengguna->check_session();
   }
 
   public function tambah_materi()
   {
     $data['panel_title'] = 'Tambah Materi Kuliah';
+    $data['matkul'] = $this->m_jadwal->lihat_data_mk();
+    $data['pertemuan'] = $this->m_jadwal->lihat_data_pertemuan();
     $data['konten'] = 'materikuliah/v_tambah_materi';
     $data['error'] = '';
     $data['notif'] = '';
@@ -39,18 +41,28 @@ class Kelola_materi extends CI_Controller{
        }
        else
        {
+         $id_dosen = $this->session->userdata('id_dosen');
          $data = array(
            'id_matakuliah'  =>  $this->input->post('id_matakuliah'),
-           'id_dosen'       =>  $this->input->post('id_dosen'),
+           'id_dosen'       =>  $id_dosen,
            'dokumen'        =>  $this->upload->data('file_name'),
+           'id_pertemuan'  =>  $this->input->post('id_pertemuan'),
          );
 
          $this->m_materi->tambah_data_materi($data);
 
          $alert	= "<script>alert('Data berhasil disimpan')</script>";
          $this->session->set_flashdata("alert", $alert);
-         redirect('Kelola_materi/tambah_materi');
+         redirect('Kelola_materi/tampil_materi');
        }
+  }
+
+  public function tampil_materi()
+  {
+    $data['panel_title'] = 'Tampil Materi Kuliah';
+    $data['db'] = $this->m_materi->tampil_data_materi();
+    $data['konten'] = 'materikuliah/v_tampil_materi';
+    $this->load->view('template_admin', $data);
   }
 
 }
