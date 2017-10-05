@@ -5,7 +5,8 @@
     </div>
     <div class="profile_info">
         <span>Selamat Datang !</span>
-        <h2><?php echo $this->session->userdata('nama_dosen','nama_mahasiswa'); ?></h2>
+        <h2><?php echo $this->session->userdata('nama_dosen'); ?></h2>
+        <h2><?php echo $this->session->userdata('nama_mahasiswa'); ?></h2>
     </div>
 </div>
 <!-- /menu prile quick info -->
@@ -70,7 +71,7 @@
           ;?>
           <ul class="nav side-menu">
             <li>
-              <a href="<?php echo base_url();?>kelola_materi/tampil_materi"><i class="fa fa-book"></i> Materi Kuliah</a>
+              <a href="<?php echo base_url();?>kelola_materi/tampil_materi_mhs"><i class="fa fa-book"></i> Materi Kuliah</a>
             </li>
             <li>
               <a href="#"><i class="fa fa-calendar"></i> Informasi Jadwal <span class="fa fa-chevron-down"></span></a>

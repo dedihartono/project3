@@ -21,6 +21,14 @@ class Kelola_pengguna extends CI_Controller {
     $this->load->view('template_admin', $data);
 	}
 
+	public function tampil_dosen()
+	{
+		$data['panel_title'] = 'Tambah Dosen';
+		$data['db'] = $this->m_pengguna->tampil_data_dosen();
+    $data['konten'] = 'pengguna/v_tampil_dosen';
+    $this->load->view('template_admin', $data);
+	}
+
 	public function tambah_dosen_proses()
 	{
 		$data_1 = array(
@@ -50,6 +58,14 @@ class Kelola_pengguna extends CI_Controller {
 	{
 		$data['panel_title'] = 'Tambah Mahasiswa';
 		$data['konten'] = 'pengguna/v_tambah_mahasiswa';
+		$this->load->view('template_admin', $data);
+	}
+
+	public function tampil_mahasiswa()
+	{
+		$data['panel_title'] = 'Tambah Mahasiswa';
+		$data['db'] = $this->m_pengguna->tampil_data_mahasiswa();
+		$data['konten'] = 'pengguna/v_tampil_mahasiswa';
 		$this->load->view('template_admin', $data);
 	}
 

@@ -46,7 +46,8 @@ class Kelola_materi extends CI_Controller{
            'id_matakuliah'  =>  $this->input->post('id_matakuliah'),
            'id_dosen'       =>  $id_dosen,
            'dokumen'        =>  $this->upload->data('file_name'),
-           'id_pertemuan'  =>  $this->input->post('id_pertemuan'),
+           'id_pertemuan'   =>  $this->input->post('id_pertemuan'),
+           'tanggal'        =>  $this->jamsekarang(),
          );
 
          $this->m_materi->tambah_data_materi($data);
@@ -63,6 +64,23 @@ class Kelola_materi extends CI_Controller{
     $data['db'] = $this->m_materi->tampil_data_materi();
     $data['konten'] = 'materikuliah/v_tampil_materi';
     $this->load->view('template_admin', $data);
+  }
+
+  public function tampil_materi_mhs()
+  {
+    $data['panel_title'] = 'Tampil Materi Kuliah';
+    $data['db'] = $this->m_materi->tampil_data_materi_mhs();
+    $data['konten'] = 'materikuliah/v_tampil_materi_mhs';
+    $this->load->view('template_admin', $data);
+  }
+
+  public function jamsekarang() {
+
+  date_default_timezone_set('Asia/Jakarta');
+
+    return date ("Y-m-d");
+    // H:i:s
+
   }
 
 }

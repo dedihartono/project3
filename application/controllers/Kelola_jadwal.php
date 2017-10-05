@@ -29,6 +29,7 @@ class Kelola_jadwal extends CI_Controller {
   public function tambah_mk()
   {
     $data['panel_title'] = 'Tambah Mata Kuliah';
+    $data['semester'] = $this->m_jadwal->lihat_data_semester();
     $data['konten'] = 'jadwal/v_tambah_mk';
     $this->load->view('template_admin', $data);
   }
@@ -38,6 +39,7 @@ class Kelola_jadwal extends CI_Controller {
     $data = array(
       'matakuliah'  => $this->input->post('matakuliah'),
       'sks'         => $this->input->post('sks'),
+      'id_semester' => $this->input->post('id_semester'),
     );
     $this->m_jadwal->tambah_data_mk($data);
 		$alert	= "<script>alert('Data berhasil disimpan')</script>";
@@ -60,6 +62,7 @@ class Kelola_jadwal extends CI_Controller {
     $data = array(
       'matakuliah'  => $this->input->post('matakuliah'),
       'sks'         => $this->input->post('sks'),
+      'id_semester' => $this->input->post('id_semester'),
     );
 
     $this->m_jadwal->edit_data_mk($data, $id);

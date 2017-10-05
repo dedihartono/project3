@@ -70,7 +70,13 @@ class M_pengguna extends CI_Model {
 
 			}
 			if ($data == "3") {
-				$data = ['jabatan' => $jabatan[3], 'logged_in' => TRUE];
+				$mahasiswa = $this->get_data_mahasiswa();
+				$data = [
+					'jabatan' => $jabatan[3],
+					'logged_in' => TRUE,
+					'id_mahasiswa' => $mahasiswa->id_mahasiswa,
+					'nama_mahasiswa' => $mahasiswa->nama_mahasiswa,
+				];
 				$this->session->set_userdata($data);
 
 				$alert	= "<script>alert('Login Sebagai $jabatan[3]')</script>";
@@ -96,7 +102,7 @@ class M_pengguna extends CI_Model {
 		}
 
 	}
-
+	//for session
 	public function get_data_dosen()
 	{
 		$id = $this->session->userdata('id_pengguna');
@@ -104,6 +110,17 @@ class M_pengguna extends CI_Model {
 		$this->db->from('tb_dosen AS do');
 		$this->db->join('tb_pengguna AS pn', 'do.`id_pengguna` = pn.`id_pengguna`', 'LEFT');
 		$this->db->where('do.`id_pengguna` = "'.$id.'"'   );
+		$query = $this->db->get();
+			return $query->row();
+	}
+
+	public function get_data_mahasiswa()
+	{
+		$id = $this->session->userdata('id_pengguna');
+		$this->db->select('*');
+		$this->db->from('tb_mahasiswa AS mh');
+		$this->db->join('tb_pengguna AS pn', 'mh.`id_pengguna` = pn.`id_pengguna`', 'LEFT');
+		$this->db->where('mh.`id_pengguna` = "'.$id.'"'   );
 		$query = $this->db->get();
 			return $query->row();
 	}
@@ -117,6 +134,13 @@ class M_pengguna extends CI_Model {
 	}
 
 	//Kelola Pengguna (Dosen)
+
+	public function tampil_data_dosen()
+	{
+		$query = $this->db->get('tb_dosen');
+		return $query->result();
+	}
+
 	public function tambah_data_dosen($data)
 	{
 		$this->db->insert('tb_dosen', $data);
@@ -126,6 +150,12 @@ class M_pengguna extends CI_Model {
 	public function tambah_data_mahasiswa($data)
 	{
 		$this->db->insert('tb_mahasiswa', $data);
+	}
+
+	public function tampil_data_mahasiswa()
+	{
+		$query = $this->db->get('tb_mahasiswa');
+		return $query->result();
 	}
 
 

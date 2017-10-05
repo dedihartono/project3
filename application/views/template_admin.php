@@ -77,7 +77,7 @@
                             <li class="">
                                 <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
                                     <img src="<?php echo base_url();?>assets/images/uploads/<?php echo $this->session->userdata('gambar'); ?>" alt="">
-                                      <?php echo $this->session->userdata('nama_dosen', 'nama_mahasiswa'); ?>
+                                    <?php echo $this->session->userdata('nama_dosen'); ?><?php echo $this->session->userdata('nama_mahasiswa'); ?>
                                     <span class=" fa fa-angle-down"></span>
                                 </a>
                                 <ul class="dropdown-menu dropdown-usermenu animated fadeInDown pull-right">

@@ -12,7 +12,10 @@ class M_jadwal extends CI_Model {
 
   //kelola Matakuliah
   public function lihat_data_mk() {
-    $query = $this->db->get('tb_matakuliah');
+    $this->db->select('*');
+    $this->db->from('tb_matakuliah AS m');
+    $this->db->join('tb_semester AS s', 'm.`id_semester` = s.`id_semester`');
+    $query = $this->db->get();
     return $query->result();
   }
 

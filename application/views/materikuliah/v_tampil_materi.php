@@ -31,8 +31,6 @@
                           <td class=" "><?php echo $row->dokumen ;?></td>
                           <td class=" ">
                               <a class="btn btn-info" href="<?php echo base_url();?>assets/images/uploads/<?php echo $row->dokumen;?>">Download</a>
-                              <a class="btn btn-info" href="<?php echo base_url();?>kelola_jadwal/edit_mk/<?php echo $row->id_matakuliah;?>">Edit</a>
-                              <a class="btn btn-danger" onclick="return hapus()" href="<?php echo base_url();?>kelola_jadwal/hapus_mk/<?php echo $row->id_matakuliah;?>">Hapus</a>
                           </td>
                         </tr>
                       <?php endforeach; ?>
