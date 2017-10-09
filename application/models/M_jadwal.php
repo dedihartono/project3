@@ -103,7 +103,14 @@ class M_jadwal extends CI_Model {
 
   public function tampil_data_jadwal_dosen($id)
   {
-
+    $this->db->select('*');
+    $this->db->from('tb_jadwal');
+    $this->db->join('tb_hari', 'tb_jadwal.id_hari = tb_hari.id_hari', 'left');
+    $this->db->join('tb_matakuliah', 'tb_jadwal.id_matakuliah = tb_matakuliah.id_matakuliah', 'left');
+    $this->db->join('tb_dosen', 'tb_jadwal.id_jadwal = tb_dosen.id_dosen', 'left');
+    $this->db->where('tb_dosen.id_dosen = "'.$id.'"');
+    $query = $this->db->get();
+    return $query->result();
   }
 
   public function tampil_data_jadwal_mhs($id_hari){

@@ -31,7 +31,7 @@
               <a href="<?php echo base_url();?>kelola_jadwal/tampil_mk"><i class="fa fa-file"></i> Kelola Matakuliah</a>
             </li>
             <li>
-              <a href="<?php echo base_url();?>kelola_materi/tampil_materi"><i class="fa fa-book"></i> Materi Kuliah</a>
+              <a href="<?php echo base_url();?>kelola_materi/tampil_materi_admin"><i class="fa fa-book"></i> Materi Kuliah</a>
             </li>
             <li>
               <a href="<?php echo base_url();?>kelola_jadwal/tampil_jadwal"><i class="fa fa-calendar"></i> Kelola Jadwal</a>
@@ -52,9 +52,10 @@
 
           <ul class="nav side-menu">
               <li>
-                <a href="<?php echo base_url();?>kelola_materi/tampil_materi"><i class="fa fa-book"></i> Kelola Materi Kuliah</a>
+                <a href="<?php echo base_url();?>kelola_materi/tampil_materi_dosen"><i class="fa fa-book"></i> Kelola Materi Kuliah</a>
               </li>
-              <a href="<?php echo base_url();?>kelola_jadwal/tampil_jadwal_dosen"><i class="fa fa-calendar"></i> Informasi Jadwal</span></a>
+              <li>
+              <a href="<?php echo base_url();?>kelola_jadwal/tampil_jadwal_dosen"><i class="fa fa-calendar"></i> Informasi Jadwal</span></a></li>
           </ul>
         <?php }
               if($hak_akses == $jabatan[3]) {
