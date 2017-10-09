@@ -3,7 +3,11 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
+<<<<<<< HEAD
 -- Generation Time: Oct 06, 2017 at 09:29 AM
+=======
+-- Generation Time: Oct 09, 2017 at 06:28 PM
+>>>>>>> cabang1
 -- Server version: 5.6.21
 -- PHP Version: 5.6.3
 
@@ -78,11 +82,27 @@ INSERT INTO `tb_hari` (`id_hari`, `hari`) VALUES
 
 CREATE TABLE IF NOT EXISTS `tb_jadwal` (
 `id_jadwal` int(11) NOT NULL,
+<<<<<<< HEAD
   `jam` time DEFAULT NULL,
   `jadwal` varchar(64) DEFAULT NULL,
   `id_dosen` int(11) DEFAULT NULL,
   `id_hari` int(1) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+=======
+  `jam` time DEFAULT '00:00:00',
+  `id_matakuliah` int(11) DEFAULT NULL,
+  `id_dosen` int(11) DEFAULT NULL,
+  `id_hari` int(1) DEFAULT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `tb_jadwal`
+--
+
+INSERT INTO `tb_jadwal` (`id_jadwal`, `jam`, `id_matakuliah`, `id_dosen`, `id_hari`) VALUES
+(2, '01:30:00', 1, 1, 1),
+(3, '00:00:00', 1, 4, 1);
+>>>>>>> cabang1
 
 -- --------------------------------------------------------
 
@@ -116,7 +136,11 @@ CREATE TABLE IF NOT EXISTS `tb_matakuliah` (
   `matakuliah` varchar(64) DEFAULT NULL,
   `sks` int(1) DEFAULT NULL,
   `id_semester` int(1) DEFAULT NULL
+<<<<<<< HEAD
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+=======
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+>>>>>>> cabang1
 
 --
 -- Dumping data for table `tb_matakuliah`
@@ -125,7 +149,12 @@ CREATE TABLE IF NOT EXISTS `tb_matakuliah` (
 INSERT INTO `tb_matakuliah` (`id_matakuliah`, `matakuliah`, `sks`, `id_semester`) VALUES
 (1, 'Analisis Proses Bisnis (APB)', 2, 3),
 (2, 'Matematika Diskrit', 3, 2),
+<<<<<<< HEAD
 (3, 'Perkembangan Teknologi Informasi', 3, 1);
+=======
+(3, 'Perkembangan Teknologi Informasi', 3, 1),
+(4, NULL, NULL, NULL);
+>>>>>>> cabang1
 
 -- --------------------------------------------------------
 
@@ -140,7 +169,11 @@ CREATE TABLE IF NOT EXISTS `tb_materi_kuliah` (
   `dokumen` varchar(225) DEFAULT NULL,
   `id_pertemuan` int(1) DEFAULT NULL,
   `tanggal` date DEFAULT NULL
+<<<<<<< HEAD
 ) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
+=======
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
+>>>>>>> cabang1
 
 --
 -- Dumping data for table `tb_materi_kuliah`
@@ -154,7 +187,13 @@ INSERT INTO `tb_materi_kuliah` (`id_materi_kuliah`, `id_matakuliah`, `id_dosen`,
 (5, 0, NULL, 'Layout,_Listview,_Gridview,_and_Adapter1.pptx', NULL, NULL),
 (6, 2, 3, '(80).pdf', 1, NULL),
 (7, 1, 3, 'AngularJS_Tutorial.pdf', 2, NULL),
+<<<<<<< HEAD
 (8, 1, 3, '67.pdf', 2, '2017-10-06');
+=======
+(8, 1, 3, '67.pdf', 2, '2017-10-06'),
+(9, 2, NULL, 'test.pptx', 2, '2017-10-09'),
+(10, 3, 3, 'test1.pptx', 5, '2017-10-09');
+>>>>>>> cabang1
 
 -- --------------------------------------------------------
 
@@ -316,7 +355,12 @@ MODIFY `id_hari` int(1) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=8;
 -- AUTO_INCREMENT for table `tb_jadwal`
 --
 ALTER TABLE `tb_jadwal`
-MODIFY `id_jadwal` int(11) NOT NULL AUTO_INCREMENT;
+MODIFY `id_jadwal` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
+--
+-- AUTO_INCREMENT for table `tb_mahasiswa`
+--
+ALTER TABLE `tb_mahasiswa`
+MODIFY `id_mahasiswa` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `tb_mahasiswa`
 --
@@ -326,12 +370,20 @@ MODIFY `id_mahasiswa` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
 -- AUTO_INCREMENT for table `tb_matakuliah`
 --
 ALTER TABLE `tb_matakuliah`
+<<<<<<< HEAD
 MODIFY `id_matakuliah` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
+=======
+MODIFY `id_matakuliah` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
+>>>>>>> cabang1
 --
 -- AUTO_INCREMENT for table `tb_materi_kuliah`
 --
 ALTER TABLE `tb_materi_kuliah`
+<<<<<<< HEAD
 MODIFY `id_materi_kuliah` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=9;
+=======
+MODIFY `id_materi_kuliah` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=11;
+>>>>>>> cabang1
 --
 -- AUTO_INCREMENT for table `tb_pengguna`
 --

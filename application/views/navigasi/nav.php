@@ -31,14 +31,10 @@
               <a href="<?php echo base_url();?>kelola_jadwal/tampil_mk"><i class="fa fa-file"></i> Kelola Matakuliah</a>
             </li>
             <li>
-              <a href="<?php echo base_url();?>kelola_materi/tampil_materi"><i class="fa fa-book"></i> Materi Kuliah</a>
+              <a href="<?php echo base_url();?>kelola_materi/tampil_materi_admin"><i class="fa fa-book"></i> Materi Kuliah</a>
             </li>
             <li>
-              <a href="#"><i class="fa fa-calendar"></i> Kelola Jadwal <span class="fa fa-chevron-down"></span></a>
-              <ul class="nav child_menu" style="display: none">
-                  <li><a href="<?php echo base_url();?>kelola_jadwal/tampil_jadwal_ganjil">Jadwal Ganjil</a></li>
-                  <li><a href="<?php echo base_url();?>kelola_jadwal/tampil_jadwal_genap">Jadwal Genap</a></li>
-              </ul>
+              <a href="<?php echo base_url();?>kelola_jadwal/tampil_jadwal"><i class="fa fa-calendar"></i> Kelola Jadwal</a>
             </li>
             <li>
               <a href="#"><i class="fa fa-users"></i> Kelola Pengguna <span class="fa fa-chevron-down"></span></a>
@@ -56,15 +52,10 @@
 
           <ul class="nav side-menu">
               <li>
-                <a href="<?php echo base_url();?>kelola_materi/tampil_materi"><i class="fa fa-book"></i> Kelola Materi Kuliah</a>
+                <a href="<?php echo base_url();?>kelola_materi/tampil_materi_dosen"><i class="fa fa-book"></i> Kelola Materi Kuliah</a>
               </li>
               <li>
-                <a href="#"><i class="fa fa-calendar"></i> Informasi Jadwal <span class="fa fa-chevron-down"></span></a>
-                <ul class="nav child_menu" style="display: none">
-                    <li><a href="<?php echo base_url();?>kelola_jadwal/tampil_jadwal_ganjil">Jadwal Ganjil</a></li>
-                    <li><a href="<?php echo base_url();?>kelola_jadwal/tampil_jadwal_genap">Jadwal Genap</a></li>
-                </ul>
-              </li>
+              <a href="<?php echo base_url();?>kelola_jadwal/tampil_jadwal_dosen"><i class="fa fa-calendar"></i> Informasi Jadwal</span></a></li>
           </ul>
         <?php }
               if($hak_akses == $jabatan[3]) {
@@ -74,11 +65,7 @@
               <a href="<?php echo base_url();?>kelola_materi/tampil_materi_mhs"><i class="fa fa-book"></i> Materi Kuliah</a>
             </li>
             <li>
-              <a href="#"><i class="fa fa-calendar"></i> Informasi Jadwal <span class="fa fa-chevron-down"></span></a>
-              <ul class="nav child_menu" style="display: none">
-                  <li><a href="<?php echo base_url();?>kelola_jadwal/tampil_jadwal_ganjil">Jadwal Ganjil</a></li>
-                  <li><a href="<?php echo base_url();?>kelola_jadwal/tampil_jadwal_genap">Jadwal Genap</a></li>
-              </ul>
+              <a href="<?php echo base_url();?>kelola_jadwal/tampil_jadwal_mhs"><i class="fa fa-calendar"></i> Informasi Jadwal</span></a>
             </li>
           </ul>
         <?php } ;?>

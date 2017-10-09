@@ -15,7 +15,7 @@ class M_materi extends CI_Model {
     $this->db->insert('tb_materi_kuliah', $data);
   }
 
-  public function tampil_data_materi()
+  public function tampil_data_dosen()
   {
     $id = $this->session->userdata('id_dosen');
     $this->db->select('*');
@@ -28,9 +28,10 @@ class M_materi extends CI_Model {
         return $query->result();
   }
 
-  public function tampil_data_materi_mhs()
+
+  public function tampil_data_materi()
   {
-    $id = $this->session->userdata('id_dosen');
+
     $this->db->select('*');
     $this->db->from('tb_materi_kuliah AS mk');
     $this->db->join('tb_matakuliah AS mat', 'mk.`id_matakuliah` = mat.`id_matakuliah`', 'LEFT' );
