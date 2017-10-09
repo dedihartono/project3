@@ -3,11 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
-<<<<<<< HEAD
 -- Generation Time: Oct 06, 2017 at 09:29 AM
-=======
--- Generation Time: Oct 09, 2017 at 06:28 PM
->>>>>>> cabang1
 -- Server version: 5.6.21
 -- PHP Version: 5.6.3
 
