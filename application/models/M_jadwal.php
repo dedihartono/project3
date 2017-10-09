@@ -44,6 +44,11 @@ class M_jadwal extends CI_Model {
     $this->db->delete('tb_matakuliah');
   }
 
+  public function lihat_data_matkul() {
+    $query = $this->db->get('tb_matakuliah');
+    return $query->result();
+  }
+
   public function lihat_data_pertemuan() {
     $query = $this->db->get('tb_pertemuan');
     return $query->result();
@@ -51,6 +56,64 @@ class M_jadwal extends CI_Model {
 
   public function lihat_data_semester() {
     $query = $this->db->get('tb_semester');
+    return $query->result();
+  }
+
+  public function lihat_data_hari() {
+    $query = $this->db->get('tb_hari');
+    return $query->result();
+  }
+
+  //Kelola jadwal
+  public function tambah_data_jadwal($data)
+  {
+    $this->db->insert('tb_jadwal', $data);
+  }
+
+  public function lihat_data_jadwal()
+  {
+    $this->db->select('*');
+    $this->db->from('tb_jadwal');
+    $this->db->join('tb_hari', 'tb_jadwal.id_hari = tb_hari.id_hari', 'left');
+    $this->db->join('tb_matakuliah', 'tb_jadwal.id_matakuliah = tb_matakuliah.id_matakuliah', 'left');
+    $this->db->join('tb_dosen', 'tb_jadwal.id_jadwal = tb_dosen.id_dosen', 'left');
+    $query = $this->db->get();
+    return $query->result();
+  }
+
+  public function lihat_jadwal_by($id)
+  {
+    $this->db->where('id_jadwal', $id);
+    $query = $this->db->get('tb_jadwal');
+
+    return $query->row();
+  }
+
+  public function edit_data_jadwal($data, $id)
+  {
+    $this->db->where('id_jadwal', $id);
+    $this->db->update('tb_jadwal', $data);
+  }
+
+  public function hapus_data_jadwal($id)
+  {
+    $this->db->where('id_jadwal', $id);
+    $this->db->delete('tb_jadwal');
+  }
+
+  public function tampil_data_jadwal_dosen($id)
+  {
+
+  }
+
+  public function tampil_data_jadwal_mhs($id_hari){
+    $this->db->select('*');
+    $this->db->from('tb_jadwal');
+    $this->db->join('tb_hari', 'tb_jadwal.id_hari = tb_hari.id_hari', 'left');
+    $this->db->join('tb_matakuliah', 'tb_jadwal.id_matakuliah = tb_matakuliah.id_matakuliah', 'left');
+    $this->db->join('tb_dosen', 'tb_jadwal.id_jadwal = tb_dosen.id_dosen', 'left');
+    $this->db->where('tb_hari.id_hari = "'.$id_hari.'"');
+    $query = $this->db->get();
     return $query->result();
   }
 

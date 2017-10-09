@@ -25,6 +25,7 @@
     <link href="<?php echo base_url();?>assets/css/floatexamples.css" rel="stylesheet" type="text/css" />
     <link href="<?php echo base_url();?>assets/css/datatables/tools/css/dataTables.tableTools.css" rel="stylesheet" />
 
+    <link href="<?php echo base_url();?>assets/js/timepicker/jquery.timepicker.css" rel="stylesheet" />
 
     <script src="<?php echo base_url();?>assets/js/jquery.min.js"></script>
 
@@ -155,7 +156,12 @@
     <!-- Datatables -->
     <script src="<?php echo base_url();?>assets/js/datatables/js/jquery.dataTables.js"></script>
     <script src="<?php echo base_url();?>assets/js/datatables/tools/js/dataTables.tableTools.js"></script>
+    <!--TimePicker--->
+    <script src="<?php echo base_url();?>assets/js/timepicker/jquery.timepicker.min.js"></script>
     <script>
+        //timepicker
+        $('#jam').timepicker({ 'timeFormat': 'H:i:s' });
+
         $(document).ready(function () {
             $('input.tableflat').iCheck({
                 checkboxClass: 'icheckbox_flat-green',
